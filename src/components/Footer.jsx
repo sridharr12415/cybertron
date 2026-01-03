@@ -1,4 +1,4 @@
-import { Shield, Github, Twitter, Instagram, Linkedin } from 'lucide-react';
+
 
 const Footer = () => {
   return (
@@ -13,3 +13,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
