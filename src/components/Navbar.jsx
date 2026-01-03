@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,3 +96,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
