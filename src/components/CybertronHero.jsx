@@ -6,25 +6,42 @@ export default function CybertronHero() {
       <div className="absolute inset-0 bg-[linear-gradient(transparent_95%,rgba(0,255,255,0.08)_100%)] bg-[length:100%_4px] opacity-30" />
 
       {/* NAVBAR */}
-      <nav className="relative z-10 flex items-center justify-between px-10 py-6 border-b border-cyan-500/20">
-        <div className="flex items-center gap-2 text-xl font-bold tracking-widest">
-          <span className="text-cyan-400">🛡</span>
-          <span>CYBERTRON</span>
-        </div>
+      {/* NAVBAR */}
+<nav className="relative z-10 flex items-center justify-between px-10 py-6 border-b border-cyan-500/20">
 
-        <ul className="hidden md:flex gap-8 text-sm text-gray-300 tracking-wider">
-          <li className="hover:text-cyan-400 cursor-pointer">HOME</li>
-          <li className="hover:text-cyan-400 cursor-pointer">SESSIONS</li>
-          <li className="hover:text-cyan-400 cursor-pointer">ABOUT</li>
-          <li className="hover:text-cyan-400 cursor-pointer">RULES</li>
-          <li className="hover:text-cyan-400 cursor-pointer">SPONSORS</li>
-          <li className="hover:text-cyan-400 cursor-pointer">CONTACT</li>
-        </ul>
+  {/* LEFT NAV ITEMS */}
+  <ul className="flex gap-8 text-sm text-gray-300 tracking-wider items-center">
+    <li className="hover:text-cyan-400 cursor-pointer">HOME</li>
+    <li className="hover:text-cyan-400 cursor-pointer">SESSIONS</li>
+    <li className="hover:text-cyan-400 cursor-pointer">ABOUT</li>
+    <li className="hover:text-cyan-400 cursor-pointer">RULES</li>
+    <li className="hover:text-cyan-400 cursor-pointer">SPONSORS</li>
+    <li className="hover:text-cyan-400 cursor-pointer">CONTACT</li>
 
-        <button className="border border-cyan-400 px-6 py-2 text-sm tracking-widest hover:bg-cyan-400 hover:text-black transition">
-          REGISTER
-        </button>
-      </nav>
+    {/* REGISTER moved into nav */}
+    <li
+      onClick={() => navigate("/register")}
+      className="
+        ml-4 px-5 py-2
+        border border-cyan-400
+        text-cyan-400
+        tracking-widest text-xs
+        hover:bg-cyan-400 hover:text-black
+        transition cursor-pointer
+      "
+    >
+      REGISTER
+    </li>
+  </ul>
+
+  {/* RIGHT LOGO */}
+  <div className="flex items-center gap-2 text-xl font-bold tracking-widest">
+    <span className="text-cyan-400">🛡</span>
+    <span>CYBERTRON</span>
+  </div>
+
+</nav>
+
 
       {/* TERMINAL TEXT */}
       <div className="relative z-10 mt-14 text-center text-sm text-gray-400 space-y-2 font-mono">
@@ -53,7 +70,7 @@ export default function CybertronHero() {
           bg-clip-text text-transparent
         "
       >
-        CYBERTRON CTF 2025
+        CYBERTRON CTF 2026
       </span>
 
       {/* Cyan glitch */}
@@ -67,7 +84,7 @@ export default function CybertronHero() {
           pointer-events-none
         "
       >
-        CYBERTRON CTF 2025
+        CYBERTRON CTF 2026
       </span>
 
       {/* Purple glitch */}
@@ -81,7 +98,7 @@ export default function CybertronHero() {
           pointer-events-none
         "
       >
-        CYBERTRON CTF 2025
+        CYBERTRON CTF 2026
       </span>
     </h1>
 

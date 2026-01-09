@@ -8,34 +8,33 @@ export default function ContactInfoOnly() {
       <div className="relative z-10 max-w-3xl mx-auto px-4 space-y-6">
         <InfoCard
           icon={<Mail className="w-6 h-6" />}
-          title="EMAIL CHANNEL"
-          value="cybertron.ctf@example.com"
+          title="CO-ORDINATOR "
+          value="DR.R.KRISHNAMOORTHY"
           color="purple"
         />
 
         <InfoCard
           icon={<MapPin className="w-6 h-6" />}
-          title="HQ LOCATION"
-          value="Cyber Command Center, Digital District"
+          title="COLLEGE LOCATION"
+          value="Vengaivasal Main Road, Valli Nagar, Gowriwakkam, Sembakkam"
           color="cyan"
         />
 
-        <InfoCard
+       <InfoCard
           icon={<Phone className="w-6 h-6" />}
-          title="COMM LINK"
-          value="+91 XXXX XXXXXX"
+          title="ORGANIZER"
+          value="N.SRIRAM (3rd YEAR CSE(Cyber Security) )"
+          color="green"
+        />
+            <InfoCard
+          icon={<Phone className="w-6 h-6" />}
+          title="CONTACT NUMBER"
+          value="+91 8015916569"
           color="green"
         />
 
         {/* QUOTE */}
-        <div className="relative rounded-xl border border-purple-500/40 bg-black/60 backdrop-blur-sm p-6 shadow-[0_0_60px_rgba(168,85,247,0.35)] hover:shadow-[0_0_90px_rgba(168,85,247,0.7)] transition-all duration-300">
-          <p className="text-cyan-400 italic font-mono text-lg">
-            “Adapt. Hack. Survive.”
-          </p>
-          <p className="mt-2 text-purple-400 font-mono text-sm">
-            — CYBERTRON PROTOCOL
-          </p>
-        </div>
+      
       </div>
     </section>
   );
