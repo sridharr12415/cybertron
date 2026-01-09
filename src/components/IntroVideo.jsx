@@ -30,7 +30,11 @@ export default function IntroVideo({ onFinish }) {
           scale-[1.15]
         "
       >
-        <source src="/intro.mp4" type="video/mp4" />
+        <source
+  src={`https://sridharr12415.github.io/cybertron/intro.mp4`}
+  type="video/mp4"
+/>
+
       </video>
 
       {/* HACKING SCANLINES OVERLAY */}
@@ -79,3 +83,4 @@ export default function IntroVideo({ onFinish }) {
     </div>
   );
 }
+
