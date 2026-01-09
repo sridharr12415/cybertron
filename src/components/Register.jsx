@@ -6,7 +6,6 @@ import { postForm } from "../api";
 
 
 export default function Register() {
-  const DEV_SHOW_PAYMENT = false; // 🔥 false in production
   const navigate = useNavigate();
   
 
@@ -38,14 +37,12 @@ const [registrationNumber, setRegistrationNumber] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [screenshot, setScreenshot] = useState(null);
   const [isPaying, setIsPaying] = useState(false);
-  const [showPayment, setShowPayment] = useState(false);
 
   // resume payment view if user returns with registration stored
   useEffect(() => {
     const id = sessionStorage.getItem("registrationNumber");
     if (id) {
       setRegistrationNumber(id);
-      setShowPayment(true);
     }
   }, []);
 
