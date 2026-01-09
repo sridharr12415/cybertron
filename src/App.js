@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import MatrixRain from "./components/MatrixRain";
 import Navbar from "./components/Navbar";
@@ -37,6 +37,7 @@ export default function App() {
             <Route path="/success" element={<Success />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/registered" element={<RegistrationCompleted />} />
+            <Route path="/cybertron" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
 
