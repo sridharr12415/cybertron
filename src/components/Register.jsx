@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postJSON } from "../api";
 import MatrixRain from "./MatrixRain";
@@ -39,6 +39,15 @@ const [registrationNumber, setRegistrationNumber] = useState("");
   const [screenshot, setScreenshot] = useState(null);
   const [isPaying, setIsPaying] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
+
+  // resume payment view if user returns with registration stored
+  useEffect(() => {
+    const id = sessionStorage.getItem("registrationNumber");
+    if (id) {
+      setRegistrationNumber(id);
+      setShowPayment(true);
+    }
+  }, []);
 
   // ---------------- DEBOUNCE ----------------
   const teamDebounceRef = useRef(null);
@@ -92,7 +101,8 @@ const [registrationNumber, setRegistrationNumber] = useState("");
 
       setRegistrationNumber(res.registrationId);
       sessionStorage.setItem("registrationNumber", res.registrationId);
-      setShowPayment(true);
+      // Navigate to a dedicated registration-complete page
+      navigate("/registered");
 
     } catch {
       alert("Server not reachable");
@@ -258,14 +268,16 @@ const [registrationNumber, setRegistrationNumber] = useState("");
                 formData.append("transactionId", transactionId);
                 formData.append("screenshot", screenshot);
 
-               try {
-  await postForm("/submit-payment", formData);
-  navigate("/success");
-} catch (err) {
-  alert(err.message || "Payment failed");
-} finally {
-  setIsPaying(false);
-}
+                try {
+                  await postForm("/submit-payment", formData);
+                  // mark payment done for the Success page and navigate
+                  localStorage.setItem("paymentDone", "true");
+                  navigate("/success");
+                } catch (err) {
+                  alert(err.message || "Payment failed");
+                } finally {
+                  setIsPaying(false);
+                }
 
               }}
               className="w-full mt-4 py-3 border border-cyan-400 text-cyan-400"

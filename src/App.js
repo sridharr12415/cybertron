@@ -7,6 +7,8 @@ import Hero from "./components/Hero";
 import Register from "./components/Register";
 import Success from "./components/Success";
 import Verify from "./components/Verify";
+import NotFound from "./components/NotFound";
+import RegistrationCompleted from "./components/RegistrationCompleted";
 
 export default function App() {
 
@@ -34,7 +36,8 @@ export default function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/success" element={<Success />} />
             <Route path="/verify" element={<Verify />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/registered" element={<RegistrationCompleted />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
         </div>
