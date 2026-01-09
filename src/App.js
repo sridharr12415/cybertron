@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="relative min-h-screen bg-[#05090c] text-white overflow-hidden">
 
         {/* 🌌 BACKGROUND */}
@@ -37,7 +37,6 @@ export default function App() {
             <Route path="/success" element={<Success />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/registered" element={<RegistrationCompleted />} />
-            <Route path="/cybertron" element={<Navigate to="/" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
 
