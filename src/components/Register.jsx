@@ -216,12 +216,13 @@ const [registrationNumber, setRegistrationNumber] = useState("");
           {registrationNumber ? "REGISTERED" : "PROCEED TO PAYMENT"}
         </button>
 
-        {/* PAYMENT SECTION */}
-        {(DEV_SHOW_PAYMENT || showPayment) && registrationNumber && (
-          <div className="mt-10 border-t border-cyan-400/30 pt-6">
-            <p className="text-center text-cyan-400 font-mono">
-              REG NO: {registrationNumber} Please note register Number
-            </p>
+        {/* PAYMENT SECTION - always visible so users can pay immediately */}
+        <div className="mt-10 border-t border-cyan-400/30 pt-6">
+          <p className="text-center text-cyan-400 font-mono">
+            {registrationNumber
+              ? `REG NO: ${registrationNumber} Please note register Number`
+              : `No registration yet — payment will auto-register your team.`}
+          </p>
 {/* PAYMENT QR / IMAGE */}
 {/* PAYMENT IMAGE (Google Drive Embed) */}
 {/* PAYMENT IMAGE */}
@@ -253,39 +254,63 @@ const [registrationNumber, setRegistrationNumber] = useState("");
               onChange={(e) => setScreenshot(e.target.files[0])}
             />
 
-            <button
-              type="button"
-              disabled={isPaying}
-              onClick={async () => {
-                if (!transactionId || !screenshot) {
-                  alert("TXN and screenshot required");
-                  return;
+          <button
+            type="button"
+            disabled={isPaying}
+            onClick={async () => {
+              if (!transactionId || !screenshot) {
+                alert("TXN and screenshot required");
+                return;
+              }
+
+              setIsPaying(true);
+
+              try {
+                // Auto-register if needed
+                let regId = registrationNumber;
+                if (!regId) {
+                  if (!teamName || teamName.length < 3) {
+                    alert("Please provide a valid team name before payment");
+                    setIsPaying(false);
+                    return;
+                  }
+
+                  const res = await postJSON("/register", {
+                    teamName,
+                    member1,
+                    member2,
+                  });
+
+                  if (!res || !res.success) {
+                    alert(res?.error || "Registration failed");
+                    setIsPaying(false);
+                    return;
+                  }
+
+                  regId = res.registrationId;
+                  setRegistrationNumber(regId);
+                  sessionStorage.setItem("registrationNumber", regId);
                 }
 
-                setIsPaying(true);
                 const formData = new FormData();
-                formData.append("registrationId", registrationNumber);
+                formData.append("registrationId", regId);
                 formData.append("transactionId", transactionId);
                 formData.append("screenshot", screenshot);
 
-                try {
-                  await postForm("/submit-payment", formData);
-                  // mark payment done for the Success page and navigate
-                  localStorage.setItem("paymentDone", "true");
-                  navigate("/success");
-                } catch (err) {
-                  alert(err.message || "Payment failed");
-                } finally {
-                  setIsPaying(false);
-                }
-
-              }}
-              className="w-full mt-4 py-3 border border-cyan-400 text-cyan-400"
-            >
-              {isPaying ? "PROCESSING…" : "SUBMIT PAYMENT"}
-            </button>
-          </div>
-        )}
+                await postForm("/submit-payment", formData);
+                localStorage.setItem("paymentDone", "true");
+                navigate("/success");
+              } catch (err) {
+                alert(err.message || "Payment failed");
+              } finally {
+                setIsPaying(false);
+              }
+            }}
+            className="w-full mt-4 py-3 border border-cyan-400 text-cyan-400"
+          >
+            {isPaying ? "PROCESSING…" : "SUBMIT PAYMENT"}
+          </button>
+        </div>
       </form>
     </div>
   );
