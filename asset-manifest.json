@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cybertron/static/css/main.e548db1b.css",
-    "main.js": "/cybertron/static/js/main.a0fe95b5.js",
+    "main.css": "/cybertron/static/css/main.7643d9e4.css",
+    "main.js": "/cybertron/static/js/main.68383898.js",
     "index.html": "/cybertron/index.html",
-    "main.e548db1b.css.map": "/cybertron/static/css/main.e548db1b.css.map",
-    "main.a0fe95b5.js.map": "/cybertron/static/js/main.a0fe95b5.js.map"
+    "main.7643d9e4.css.map": "/cybertron/static/css/main.7643d9e4.css.map",
+    "main.68383898.js.map": "/cybertron/static/js/main.68383898.js.map"
   },
   "entrypoints": [
-    "static/css/main.e548db1b.css",
-    "static/js/main.a0fe95b5.js"
+    "static/css/main.7643d9e4.css",
+    "static/js/main.68383898.js"
   ]
 }
