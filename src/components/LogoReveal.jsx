@@ -48,7 +48,7 @@ export default function LogoReveal({ onDone }) {
         <div className="relative">
           {/* Glitch layer 1 */}
           <img
-            src="/logo.png"
+            src="https://sridharr12415.github.io/cybertron/logo.png"
             alt=""
             className="
               absolute inset-0
@@ -61,7 +61,7 @@ export default function LogoReveal({ onDone }) {
 
           {/* Glitch layer 2 */}
           <img
-            src="/logo.png"
+            src="https://sridharr12415.github.io/cybertron/logo.png"
             alt=""
             className="
               absolute inset-0
@@ -74,7 +74,7 @@ export default function LogoReveal({ onDone }) {
 
           {/* ✅ MAIN LOGO (ALWAYS VISIBLE) */}
           <img
-            src="/logo.png"
+            src="https://sridharr12415.github.io/cybertron/logo.png"
             alt="Cybertron Logo"
             className="
               relative
@@ -96,3 +96,4 @@ export default function LogoReveal({ onDone }) {
     </div>
   );
 }
+
