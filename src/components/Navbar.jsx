@@ -7,7 +7,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const navLinks = [
-    { name: "HOME", href: "/" },
+    { name: "HOME", href: "/cybertron" },
     { name: "SESSIONS", href: "#sessions" },
     { name: "RULES", href: "#rules" },
     { name: "CONTACT", href: "#contact" },
@@ -123,3 +123,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
