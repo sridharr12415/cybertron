@@ -155,7 +155,7 @@ useEffect(() => {
 </div>
 
           </div>
-<CyberCountdown targetDate={new Date("2026-02-28T09:00:00")} title="CYBERTRON CTF 2026" />
+<CyberCountdown targetDate={new Date("2026-02-23T09:00:00")} title="CYBERTRON CTF 2026" />
           <EventHighlights />
           <SessionsSection />
           <RulesSection />
@@ -167,3 +167,4 @@ useEffect(() => {
     </section>
   );
 }
+
