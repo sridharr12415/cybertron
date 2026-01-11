@@ -67,12 +67,13 @@ const CyberCountdown = ({ targetDate, title = "COUNTDOWN" }) => {
     p-5
     /* MOBILE */
     w-full max-w-sm
-    p-4
+    p-6
 
     /* DESKTOP */
     sm:w-full
     sm:max-w-4xl
-    sm:p-3
+    sm:p-4
+    sm:pt-10
  
     rounded-2xl
     bg-cyan-400/5

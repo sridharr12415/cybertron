@@ -11,8 +11,7 @@ import NotFound from "./components/NotFound";
 import RegistrationCompleted from "./components/RegistrationCompleted";
 
 export default function App() {
-
-  // ✅ API CONNECTION CHECK (PLACE HERE)
+  // ✅ API CONNECTION CHECK
   useEffect(() => {
     fetch(process.env.REACT_APP_API_BASE_URL + "/")
       .then((res) => res.json())
@@ -21,9 +20,8 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <div className="relative min-h-screen bg-[#05090c] text-white overflow-hidden">
-
         {/* 🌌 BACKGROUND */}
         <MatrixRain />
 
@@ -39,7 +37,6 @@ export default function App() {
             <Route path="/registered" element={<RegistrationCompleted />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-
         </div>
       </div>
     </BrowserRouter>

@@ -85,7 +85,35 @@ useEffect(() => {
   };
 
   // ---------------- REGISTER SUBMIT ----------------
- 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (teamUnique === false) {
+      alert("Duplicate team name");
+      return;
+    }
+
+    try {
+      const res = await postJSON("/register", {
+        teamName,
+        member1,
+        member2,
+      });
+
+      if (!res.success) {
+        alert(res.error || "Registration failed");
+        return;
+      }
+
+      setRegistrationNumber(res.registrationId);
+      sessionStorage.setItem("registrationNumber", res.registrationId);
+      // Navigate to a dedicated registration-complete page
+      navigate("/registered");
+
+    } catch {
+      alert("Server not reachable");
+    }
+  };
 
   // ---------------- INPUT STYLE ----------------
   const inputClass =
@@ -337,4 +365,3 @@ useEffect(() => {
     </div>
   );
 }
-
