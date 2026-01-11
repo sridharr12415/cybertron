@@ -12,6 +12,7 @@ import RulesSection from "./RulesSection";
 import ContactSection from "./ContactSection";
 import PerksSection from "./PerksSection";
 import Footer from "./Footer";
+import CyberCountdown from "./CyberCountdown";
 
 
 export default function Hero() {
@@ -149,10 +150,12 @@ useEffect(() => {
   </span>
 </button>
 
+
+
 </div>
 
           </div>
-
+<CyberCountdown targetDate={new Date("2026-02-28T09:00:00")} title="CYBERTRON CTF 2026" />
           <EventHighlights />
           <SessionsSection />
           <RulesSection />

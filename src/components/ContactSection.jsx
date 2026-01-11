@@ -1,37 +1,64 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactInfoOnly() {
+
+const handleLocationClick = () => {
+  setTimeout(() => {
+    window.open(
+      "https://maps.app.goo.gl/pZr9WmAPzbnXdu8X7",
+      "_blank"
+    );
+  }, 500);
+};
+
+const handlePhoneClick = () => {
+  setTimeout(() => {
+    window.open("tel:+918015916569");
+  }, 300);
+};
+
+
+
+
+
   return (
     <section className="relative py-20">
       <div className="absolute inset-0 pointer-events-none bg-black/40" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 space-y-6">
-        <InfoCard
-          icon={<Mail className="w-6 h-6" />}
-          title="CO-ORDINATOR "
-          value="DR.R.KRISHNAMOORTHY"
-          color="purple"
-        />
+    
 
-        <InfoCard
-          icon={<MapPin className="w-6 h-6" />}
-          title="COLLEGE LOCATION"
-          value="Vengaivasal Main Road, Valli Nagar, Gowriwakkam, Sembakkam"
-          color="cyan"
-        />
 
-       <InfoCard
-          icon={<Phone className="w-6 h-6" />}
-          title="ORGANIZER"
-          value="N.SRIRAM (3rd YEAR CSE(Cyber Security) )"
-          color="green"
-        />
-            <InfoCard
-          icon={<Phone className="w-6 h-6" />}
-          title="CONTACT NUMBER"
-          value="+91 8015916569"
-          color="green"
-        />
+      <InfoCard
+  icon={<Mail className="w-6 h-6" />}
+  title="CO-ORDINATOR"
+  value="DR. R. KRISHNAMOORTHY"
+  color="purple"
+/>
+
+<InfoCard
+  onClick={handleLocationClick}
+  icon={<MapPin className="w-6 h-6" />}
+  title="COLLEGE LOCATION"
+  value="Vengaivasal Main Road, Valli Nagar, Gowriwakkam, Sembakkam"
+  color="cyan"
+/>
+
+<InfoCard
+  icon={<Phone className="w-6 h-6" />}
+  title="ORGANIZER"
+  value="N. SRIRAM (3rd YEAR CSE – Cyber Security)"
+  color="green"
+/>
+
+<InfoCard
+  onClick={handlePhoneClick}
+  icon={<Phone className="w-6 h-6" />}
+  title="CONTACT NUMBER"
+  value="+91 8015916569"
+  color="green"
+/>
+
 
         {/* QUOTE */}
       
@@ -42,7 +69,7 @@ export default function ContactInfoOnly() {
 
 /* ----------------------------- */
 
-function InfoCard({ icon, title, value, color }) {
+function InfoCard({ icon, title, value, color, onClick }) {
   const colors = {
     purple: {
       border: "border-purple-500/40",
@@ -71,7 +98,9 @@ function InfoCard({ icon, title, value, color }) {
 
   return (
     <div
+      onClick={onClick}
       className={`
+        cursor-pointer
         relative overflow-hidden group
         rounded-xl border ${c.border}
         bg-black/60 backdrop-blur-sm

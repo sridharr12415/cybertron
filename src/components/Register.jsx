@@ -5,9 +5,14 @@ import MatrixRain from "./MatrixRain";
 import { postForm } from "../api";
 
 
+
 export default function Register() {
   const navigate = useNavigate();
-  
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+const upiLink =
+  "upi://pay?pa=massjeeva446@okaxis&pn=CYBERTRON&am=300&cu=INR";
+
+
 
   // ---------------- TEAM ----------------
   const [teamName, setTeamName] = useState("");
@@ -39,12 +44,16 @@ const [registrationNumber, setRegistrationNumber] = useState("");
   const [isPaying, setIsPaying] = useState(false);
 
   // resume payment view if user returns with registration stored
-  useEffect(() => {
-    const id = sessionStorage.getItem("registrationNumber");
-    if (id) {
-      setRegistrationNumber(id);
-    }
-  }, []);
+useEffect(() => {
+  const id = sessionStorage.getItem("registrationNumber");
+  const paid = localStorage.getItem("paymentDone");
+
+  if (id && paid === "true") {
+    setRegistrationNumber(id);
+    setPaymentSuccess(true);
+  }
+}, []);
+
 
   // ---------------- DEBOUNCE ----------------
   const teamDebounceRef = useRef(null);
@@ -118,7 +127,7 @@ const [registrationNumber, setRegistrationNumber] = useState("");
       <MatrixRain />
 
       <form
-        onSubmit={handleSubmit}
+       
         className="max-w-2xl w-full bg-black/60 backdrop-blur-xl
         border border-cyan-400/30 rounded-2xl p-10
         shadow-[0_0_40px_rgba(0,255,255,0.4)] relative z-10"
@@ -204,52 +213,95 @@ const [registrationNumber, setRegistrationNumber] = useState("");
           />
         </div>
 
-        <button
-          type="submit"
-          disabled={teamUnique === false || registrationNumber}
-          className="w-full py-3 border border-cyan-400 text-cyan-400
-          hover:bg-cyan-400 hover:text-black transition"
-        >
-          {registrationNumber ? "REGISTERED" : "PROCEED TO PAYMENT"}
-        </button>
+      
 
         {/* PAYMENT SECTION - always visible so users can pay immediately */}
         <div className="mt-10 border-t border-cyan-400/30 pt-6">
-          <p className="text-center text-cyan-400 font-mono">
-            {registrationNumber
-              ? `REG NO: ${registrationNumber} Please note register Number`
-              : `No registration yet — payment will auto-register your team.`}
-          </p>
+      {paymentSuccess && registrationNumber && (
+  <p className="text-center text-green-400 font-mono mt-4">
+    ✅ REGISTRATION SUCCESSFUL  
+    <br />
+    REG NO: <span className="text-cyan-400">{registrationNumber}</span>
+  </p>
+)}
 {/* PAYMENT QR / IMAGE */}
 {/* PAYMENT IMAGE (Google Drive Embed) */}
 {/* PAYMENT IMAGE */}
-<div className="mt-6 mb-4 flex justify-center">
+{/* PAYMENT IMAGE */}
+{/* PAYMENT IMAGE */}
+<div className="mt-6 mb-4 flex flex-col items-center">
+
+  {/* CLICKABLE QR IMAGE */}
   <img
     src="https://lh3.googleusercontent.com/d/1-UAGgIYk2oi69CKPmydi18Y1HM6G4zye"
     alt="Payment QR"
+    onClick={() => {
+      navigator.clipboard.writeText(upiLink);
+      alert("✅ Payment link copied! Open it on your mobile to pay.");
+    }}
     className="w-48 h-48 md:w-56 md:h-56 object-contain
                border border-cyan-400/40 rounded-xl
-               shadow-[0_0_30px_rgba(0,255,255,0.4)]"
+               shadow-[0_0_30px_rgba(0,255,255,0.4)]
+               cursor-pointer hover:scale-105 transition"
     loading="lazy"
     referrerPolicy="no-referrer"
   />
+
+  <p className="text-xs text-gray-400 mt-2">
+    Click the QR to copy payment link 📋
+  </p>
+
 </div>
 
 
 
-            <input
-              className={inputClass + " mt-4"}
-              placeholder="Transaction ID"
-              value={transactionId}
-              onChange={(e) => setTransactionId(e.target.value)}
-            />
 
-            <input
-              type="file"
-              className="mt-4 text-gray-300"
-              accept="image/*"
-              onChange={(e) => setScreenshot(e.target.files[0])}
-            />
+{/* TRANSACTION ID */}
+<div className="mt-6">
+  <label className="block text-xs text-cyan-400 tracking-widest mb-1">
+    TRANSACTION ID
+  </label>
+  <input
+    className={`${inputClass}`}
+    placeholder="Enter UPI Transaction ID"
+    value={transactionId}
+    onChange={(e) => setTransactionId(e.target.value)}
+  />
+</div>
+
+{/* SCREENSHOT UPLOAD */}
+<div className="mt-5">
+  <label className="block text-xs text-cyan-400 tracking-widest mb-2">
+    PAYMENT SCREENSHOT
+  </label>
+
+  <div className="relative">
+    <input
+      type="file"
+      accept="image/*"
+      onChange={(e) => setScreenshot(e.target.files[0])}
+      className="absolute inset-0 opacity-0 cursor-pointer"
+    />
+
+    <div
+      className="flex items-center justify-center gap-2
+                 w-full py-3 border border-cyan-400/40
+                 rounded-lg text-gray-300
+                 bg-black/40
+                 hover:border-cyan-400
+                 hover:text-cyan-400 transition"
+    >
+      📤 Upload Screenshot
+    </div>
+  </div>
+
+  {screenshot && (
+    <p className="text-xs text-green-400 mt-2">
+      ✅ {screenshot.name}
+    </p>
+  )}
+</div>
+
 
           <button
             type="button"
@@ -295,6 +347,7 @@ const [registrationNumber, setRegistrationNumber] = useState("");
                 formData.append("screenshot", screenshot);
 
                 await postForm("/submit-payment", formData);
+                setPaymentSuccess(true);
                 localStorage.setItem("paymentDone", "true");
                 navigate("/success");
               } catch (err) {
