@@ -30,7 +30,7 @@ export default function App() {
           <Navbar />
 
           <Routes>
-            <Route path="/" element={<Hero />} />
+            <Route path="/cybertron" element={<Hero />} />
             <Route path="/register" element={<Register />} />
             <Route path="/success" element={<Success />} />
             <Route path="/verify" element={<Verify />} />
@@ -42,3 +42,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
