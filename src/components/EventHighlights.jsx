@@ -19,7 +19,7 @@ const highlights = [
   },
   {
     icon: "👥",
-    title: "2 MEMBERS",
+    title: "3 MEMBERS",
     subtitle: "Per Team",
     color: "purple",
   },

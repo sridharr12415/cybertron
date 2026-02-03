@@ -21,6 +21,8 @@ const upiLink =
   const [checkingTeam, setCheckingTeam] = useState(false);
 
   // ---------------- MEMBERS ----------------
+  const [members, setMembers] = useState(2);
+
   const [member1, setMember1] = useState({
     name: "",
     college: "",
@@ -29,6 +31,13 @@ const upiLink =
   });
 
   const [member2, setMember2] = useState({
+    name: "",
+    college: "",
+    email: "",
+    phone: "",
+  });
+
+  const [member3, setMember3] = useState({
     name: "",
     college: "",
     email: "",
@@ -142,6 +151,19 @@ useEffect(() => {
           )}
         </div>
 
+        {/* MEMBERS COUNT */}
+        <div className="mb-6">
+          <label className="block text-xs text-cyan-400 tracking-widest mb-1">MEMBERS</label>
+          <select
+            value={members}
+            onChange={(e) => setMembers(Number(e.target.value))}
+            className="w-36 p-3 bg-black/70 border border-cyan-400/30 rounded-lg text-white"
+          >
+            <option value={2}>2 Members</option>
+            <option value={3}>3 Members</option>
+          </select>
+        </div>
+
         {/* MEMBER 1 */}
         <h2 className="text-cyan-400 tracking-widest mb-3">MEMBER 1</h2>
         <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -184,7 +206,29 @@ useEffect(() => {
           />
         </div>
 
-      
+        {members === 3 && (
+          <>
+            <h2 className="text-cyan-400 tracking-widest mb-3">MEMBER 3</h2>
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <input className={inputClass} placeholder="Name"
+                value={member3.name}
+                onChange={(e) => setMember3({ ...member3, name: e.target.value })}
+              />
+              <input className={inputClass} placeholder="College"
+                value={member3.college}
+                onChange={(e) => setMember3({ ...member3, college: e.target.value })}
+              />
+              <input className={inputClass} placeholder="Email"
+                value={member3.email}
+                onChange={(e) => setMember3({ ...member3, email: e.target.value })}
+              />
+              <input className={inputClass} placeholder="Phone"
+                value={member3.phone}
+                onChange={(e) => setMember3({ ...member3, phone: e.target.value })}
+              />
+            </div>
+          </>
+        )}
 
         {/* PAYMENT SECTION - always visible so users can pay immediately */}
         <div className="mt-10 border-t border-cyan-400/30 pt-6">
@@ -204,7 +248,7 @@ useEffect(() => {
 
   {/* CLICKABLE QR IMAGE */}
   <img
-    src="https://lh3.googleusercontent.com/d/1-UAGgIYk2oi69CKPmydi18Y1HM6G4zye"
+    src={members === 3 ? "https://lh3.googleusercontent.com/d/1HCVC2kFMwXhIJ8rN4XDEJejWoLhXGK9k" : "https://lh3.googleusercontent.com/d/1WXm_dIjSMpB9lcv9L9mgmXT5lhV2KyvW"}
     alt="Payment QR"
     onClick={() => {
       navigator.clipboard.writeText(upiLink);
@@ -295,10 +339,18 @@ useEffect(() => {
                     return;
                   }
 
+                  if (members === 3 && !member3.name) {
+                    alert("Please provide member 3's name before payment");
+                    setIsPaying(false);
+                    return;
+                  }
+
                   const res = await postJSON("/register", {
                     teamName,
+                    members,
                     member1,
                     member2,
+                    member3: members === 3 ? member3 : {},
                   });
 
                   if (!res || !res.success) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AlertTriangle, CheckCircle, XCircle, Terminal } from "lucide-react";
 
 const rules = [
-  { type: "success", text: "Maximum 2 members per team" },
+  { type: "success", text: "Maximum 3 members per team" },
   { type: "success", text: "All challenges must be solved independently" },
   { type: "success", text: "Flag sharing between teams is strictly prohibited" },
   { type: "warning", text: "Attacking the CTF infrastructure will result in disqualification" },
