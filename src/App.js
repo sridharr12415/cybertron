@@ -17,8 +17,8 @@ export default function App() {
     console.log("🔗[API] Checking connection:", API_BASE + "/");
     fetch(API_BASE + "/")
       .then((res) => res.json())
-      .then((data) => console.log("API CONNECTED ✅", data))
-      .catch((err) => console.error("API NOT CONNECTED ❌", err));
+      .then((data) => console.log("API CONNECTED ✅", data, API_BASE))
+      .catch((err) => console.error("API NOT CONNECTED ❌", err, API_BASE));
   }, []);
 
   return (
