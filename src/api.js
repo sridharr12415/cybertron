@@ -1,5 +1,5 @@
 // src/api.js
-const API_BASE = process.env.REACT_APP_API_BASE_URL;
+const API_BASE = process.env.REACT_APP_API_BASE_URL || "https://cybertron-backend.vercel.app";
 
 // JSON POST
 export async function postJSON(endpoint, data) {

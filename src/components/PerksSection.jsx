@@ -1,14 +1,10 @@
 import { Utensils, Coffee, BarChart3, Swords } from 'lucide-react';
 
 const perks = [
-  {
-    icon: Utensils,
-    title: 'Dinner Provided',
-    description: 'Fuel up for the battle',
-  },
+
   {
     icon: Coffee,
-    title: '8 Tea Breaks',
+    title: '5 Tea Breaks',
     description: 'Stay caffeinated',
   },
   {
@@ -40,7 +36,7 @@ const PerksSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           {perks.map((perk, index) => {
             const Icon = perk.icon;
-            
+
             return (
               <div
                 key={index}
