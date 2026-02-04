@@ -1,4 +1,4 @@
-export const API_BASE = "https://cybertron-backend.vercel.app";
+export const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 // JSON POST
 export async function postJSON(endpoint, data) {
