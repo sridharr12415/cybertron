@@ -1,4 +1,4 @@
-import { Utensils, Coffee, BarChart3, Swords } from 'lucide-react';
+import { Coffee, BarChart3, Swords } from 'lucide-react';
 
 const perks = [
 
