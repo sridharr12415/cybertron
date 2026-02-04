@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/cybertron/static/css/main.0c101659.css",
-    "main.js": "/cybertron/static/js/main.ac56061d.js",
+    "main.js": "/cybertron/static/js/main.5270a348.js",
     "index.html": "/cybertron/index.html",
     "main.0c101659.css.map": "/cybertron/static/css/main.0c101659.css.map",
-    "main.ac56061d.js.map": "/cybertron/static/js/main.ac56061d.js.map"
+    "main.5270a348.js.map": "/cybertron/static/js/main.5270a348.js.map"
   },
   "entrypoints": [
     "static/css/main.0c101659.css",
-    "static/js/main.ac56061d.js"
+    "static/js/main.5270a348.js"
   ]
 }
