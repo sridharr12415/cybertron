@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { API_BASE } from "./api";
 
 import MatrixRain from "./components/MatrixRain";
 import Navbar from "./components/Navbar";
@@ -13,7 +14,7 @@ import RegistrationCompleted from "./components/RegistrationCompleted";
 export default function App() {
   // ✅ API CONNECTION CHECK
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_BASE_URL + "/")
+    fetch(API_BASE + "/")
       .then((res) => res.json())
       .then((data) => console.log("API CONNECTED ✅", data))
       .catch((err) => console.error("API NOT CONNECTED ❌", err));
