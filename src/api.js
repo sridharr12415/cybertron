@@ -1,9 +1,10 @@
-// src/api.js
 export const API_BASE = "https://cybertron-backend.vercel.app";
 
 // JSON POST
 export async function postJSON(endpoint, data) {
-  const res = await fetch(`${API_BASE}${endpoint}`, {
+  const url = `${API_BASE}${endpoint}`;
+  console.log("🔗[API] POST JSON:", url);
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +17,9 @@ export async function postJSON(endpoint, data) {
 
 // FORM DATA POST (for files)
 export async function postForm(endpoint, formData) {
-  const res = await fetch(`${API_BASE}${endpoint}`, {
+  const url = `${API_BASE}${endpoint}`;
+  console.log("🔗[API] POST FORM:", url);
+  const res = await fetch(url, {
     method: "POST",
     body: formData,
   });

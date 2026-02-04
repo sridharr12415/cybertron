@@ -14,6 +14,7 @@ import RegistrationCompleted from "./components/RegistrationCompleted";
 export default function App() {
   // ✅ API CONNECTION CHECK
   useEffect(() => {
+    console.log("🔗[API] Checking connection:", API_BASE + "/");
     fetch(API_BASE + "/")
       .then((res) => res.json())
       .then((data) => console.log("API CONNECTED ✅", data))
