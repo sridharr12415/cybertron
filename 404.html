@@ -24,8 +24,27 @@
       <p class="muted" style="font-size:12px;margin-top:8px">If this repo is published at a subpath, use the link above.</p>
     </div>
 
+    <!-- Runtime config loader -->
     <script>
-      // SPA GitHub Pages redirect helper (handles deep links)
+      (function() {
+        try {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '/runtime-config.json', false);
+          xhr.send(null);
+          if (xhr.status === 200) {
+            window.__RUNTIME__ = JSON.parse(xhr.responseText);
+            console.log('🔧 Runtime config loaded', window.__RUNTIME__);
+          } else {
+            window.__RUNTIME__ = {};
+          }
+        } catch (e) {
+          window.__RUNTIME__ = {};
+        }
+      })();
+    </script>
+
+    <!-- SPA GitHub Pages redirect helper (handles deep links) -->
+    <script>
       // Source: https://github.com/rafgraph/spa-github-pages (adapted)
       (function () {
         var l = window.location;
